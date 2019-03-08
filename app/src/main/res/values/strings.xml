@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sahibinden Challenge</string>
+    <string name="empty_text">No items found for your search criteria</string>
+    <string name="search_text">Search for a Tweet</string>
+    <string name="com_twitter_sdk_android_CONSUMER_KEY">D2amJ54wJt3f6OId0n3CXDVGL</string>
+    <string name="com_twitter_sdk_android_CONSUMER_SECRET">Bq7dXG9vOjiy5UdkMHb2p7bzFFB1xPu9mM4ETW0g8Bp9Ruro3H</string>
+    <string name="welcome_to_twitter">Welcome to Twitter</string>
+</resources>

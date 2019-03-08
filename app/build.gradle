@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    defaultConfig {
+        applicationId "com.sahibinden.ataercanercelik.challenge"
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+}
+
+
+dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+
+    implementation project(':domain')
+    implementation project(':data')
+
+
+    annotationProcessor presentationDependencies.daggerCompiler
+    implementation presentationDependencies.dagger
+    implementation presentationDependencies.butterKnife
+    implementation presentationDependencies.recyclerView
+
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxAndroid
+
+    implementation presentationDependencies.rxBinding
+    implementation presentationDependencies.rxBindingSupport
+    implementation presentationDependencies.rxBindingAppCompat
+
+    compileOnly presentationDependencies.javaxAnnotation
+    implementation presentationDependencies.supportAppCompat
+    implementation presentationDependencies.facebook
+    implementation presentationDependencies.design
+
+
+    implementation developmentDependencies.leakCanary
+
+
+    annotationProcessor presentationDependencies.androidannotationsCompiler
+    implementation presentationDependencies.androidannotations
+
+    //Development
+    implementation developmentDependencies.leakCanary
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}
